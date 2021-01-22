@@ -6,3 +6,7 @@ The django admin panel should be passed through by routing through the Web Inter
 
 ## Internal Access
 The data requested should be passed through via a JSON object.
+
+GET historical-data/
+
+GET symbols/

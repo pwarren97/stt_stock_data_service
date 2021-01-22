@@ -1,4 +1,5 @@
 from .template import Source
+from iexfinance.stocks import get_historical_data
 
 class Iex(Source):
     """
@@ -19,3 +20,12 @@ class Iex(Source):
         """
         # Run error checking from Source class
         Source.get_historical_data(ticker_symbols, start, end, close_only)
+
+        # if no end is specified
+        if end == None:
+            there_is_only_one_date_listed = True
+        else:
+            there_is_only_one_date_listed = False
+
+        for ticker_symbols in ticker_symbols:
+            pass

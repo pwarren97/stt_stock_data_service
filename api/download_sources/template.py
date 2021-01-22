@@ -38,3 +38,11 @@ class Source(ABC):
             Returns all ticker_symbols, company names, associated exchange(s), etc.
             """
             pass
+
+def import_source():
+    from . import settings
+    
+    if settings.DOWNLOAD_SOURCE == 'iex':
+        from .iex import Iex as source
+    else:
+        raise ValueError('Need a proper download source. Set it in stt_stock_data_service.stt_stock_data_service.settings.py.')
