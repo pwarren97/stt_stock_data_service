@@ -3,7 +3,8 @@ from django.views import View
 
 import json
 
-# Import source
+from api.download_sources.template.Source import import_source
+source = import_source()
 
 # Create your views here.
 class HistoricalData(View):
@@ -20,7 +21,7 @@ class HistoricalData(View):
         response.content = json.dumps(data)
         return response
 
-class Symbols(View):
+class TickerSymbols(View):
     def get(self, request):
         response = HttpResponse()
         response.content = 'Hello world'

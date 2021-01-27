@@ -9,4 +9,4 @@ The data requested should be passed through via a JSON object.
 
 GET historical-data/
 
-GET symbols/
+GET ticker-symbols/

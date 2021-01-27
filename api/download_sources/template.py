@@ -1,6 +1,9 @@
 from abc import ABC
+from datetime import datetime
 
 class Source(ABC):
+    available_functions = ['get_historical_data', 'get_ticker_symbols']
+
     @staticmethod
     def get_historical_data(ticker_symbols, start, end=None, close_only=False):
         """
@@ -32,17 +35,18 @@ class Source(ABC):
         if not end == None and not start < end:
             raise ValueError("The start needs to come before the end.")
 
-        @staticmethod
-        def get_symbols():
-            """
-            Returns all ticker_symbols, company names, associated exchange(s), etc.
-            """
-            pass
+    @staticmethod
+    def get_ticker_symbols():
+        """
+        Returns all ticker symbols, company names, associated exchange(s), etc.
+        """
+        pass
 
-def import_source():
-    from . import settings
-    
-    if settings.DOWNLOAD_SOURCE == 'iex':
-        from .iex import Iex as source
-    else:
-        raise ValueError('Need a proper download source. Set it in stt_stock_data_service.stt_stock_data_service.settings.py.')
+    @staticmethod
+    def import_source():
+        from . import settings
+
+        if settings.DOWNLOAD_SOURCE == 'iex':
+            from .iex import Iex as source
+        else:
+            raise ValueError('Need a proper download source. Set it in stt_stock_data_service.stt_stock_data_service.settings.py.')

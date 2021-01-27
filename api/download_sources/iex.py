@@ -1,6 +1,7 @@
 from .template import Source
 from iexfinance.stocks import get_historical_data
 from .settings import IEX_TOKEN
+import pandas as pd
 
 class Iex(Source):
     """
@@ -9,7 +10,7 @@ class Iex(Source):
     <stt_stock_data_service.download_sources.template.Source>.
 
     functions:
-    get_stocks_data(ticker_symbol, start, end=None, close_only=False)
+    get_historical_data(ticker_symbol, start, end=None, close_only=False)
     get_symbols()
     """
     @staticmethod
@@ -36,8 +37,9 @@ class Iex(Source):
         for ticker_symbol in ticker_symbols:
             ticker_symbol = ticker_symbol.upper()
 
-            stock_data = download_then_add_data(stock_data, ticker_symbol, start, end, output_format='pandas', close_only=close_only)
-
+            stock_data = download_then_add_data(stock_data, ticker_symbol, start, end, close_only=close_only)
+        return stock_data
+        
 # Eliminate IEXCloud specific information for putting data in the database
 def restructure_df(data_frame, ticker_symbol, close_only):
     data_frame['date'] = data_frame.index
