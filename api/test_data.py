@@ -23,4 +23,9 @@ correct_test2 = np.ndarray([
     [stock1, start_date, 142.92, 157611713]
 ])
 
+correct_test3 = np.ndarray([
+    [stock1, start_date, ]
+])
+
 correct_test1 = pd.DataFrame(correct_test1, columns=_columns)
+correct_test2 = pd.DataFrame(correct_test2, columns=_columns_close_only)
