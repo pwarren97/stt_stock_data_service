@@ -11,7 +11,7 @@ class Iex(Source):
 
     functions:
     get_historical_data(ticker_symbol, start, end=None, close_only=False)
-    get_symbols()
+    get_ticker_symbols()
     """
     @staticmethod
     def get_historical_data(ticker_symbols, start, end=None, close_only=False):
@@ -21,7 +21,7 @@ class Iex(Source):
         get_historical_data(ticker_symbol, start, end=None, close_only=False)
         """
         # Run error checking from Source class
-        Source.get_historical_data(ticker_symbols, start, end, close_only)
+        super().get_historical_data(ticker_symbols, start, end, close_only)
 
         if close_only:
             stock_data = pd.DataFrame(columns=["symbol", "date", "close", "volume"])
@@ -39,7 +39,13 @@ class Iex(Source):
 
             stock_data = download_then_add_data(stock_data, ticker_symbol, start, end, close_only=close_only)
         return stock_data
-        
+
+    @staticmethod
+    def get_ticker_symbols():
+        # no need to call superclass function
+
+        raise NotImplementedError()
+
 # Eliminate IEXCloud specific information for putting data in the database
 def restructure_df(data_frame, ticker_symbol, close_only):
     data_frame['date'] = data_frame.index

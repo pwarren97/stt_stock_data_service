@@ -1,5 +1,5 @@
-# stt_stock_data_service
-Stock Trading Tools service dedicated to downloading and retrieving stock data.
+# STT Stock Data Service
+The stt (Stock Trading Tools) stock data service is dedicated to downloading and retrieving stock data.
 
 This program involves a REST API interface for accessing stock data. It is intended
 to rely on a separate service for getting the indicators, since it can be done via

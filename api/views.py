@@ -3,7 +3,7 @@ from django.views import View
 
 import json
 
-from api.download_sources.template.Source import import_source
+from .download_sources.template.Source import import_source
 source = import_source()
 
 # Create your views here.
@@ -26,5 +26,12 @@ class TickerSymbols(View):
         response = HttpResponse()
         response.content = 'Hello world'
 
-        # Do work
+        # Uncomment if get_ticker_symbols is implemented
+        try:
+            data = source.get_ticker_symbols()
+            response.content = json.dumps(data)
+        except:
+            msg = 'Could not run get_ticker_symbols() using this download source, NotImplementedError'
+            print(msg)
+            response.content = msg
         return response
