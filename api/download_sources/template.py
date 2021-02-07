@@ -14,10 +14,8 @@ class Source(ABC):
         and the close_only parameter specifies whether or not to return all
         price data for a day or just the close price.
 
-        Data returned should be as follows, a dictionary with the ticker symbols
-        as the keys, and pandas objects as the values as with columns follows:
-
-        date        | open | high | low | close | volume
+        Data returned should be as follows, a dictionary to be turned into a JSON
+        object. Details listed in docs/interface.md
 
         """
         # Force all the types to be appropriate

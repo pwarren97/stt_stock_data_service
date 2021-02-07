@@ -23,10 +23,12 @@ class Iex(Source):
         # Run error checking from Source class
         super().get_historical_data(ticker_symbols, start, end, close_only)
 
-        if close_only:
-            stock_data = pd.DataFrame(columns=["symbol", "date", "close", "volume"])
-        else:
-            stock_data = pd.DataFrame(columns=["symbol", "date", "open", "high", "low", "close", "volume"])
+        # pandas implementation
+        # if close_only:
+        #     stock_data = pd.DataFrame(columns=["symbol", "date", "close", "volume"])
+        # else:
+        #     stock_data = pd.DataFrame(columns=["symbol", "date", "open", "high", "low", "close", "volume"])
+        stock_data = dict()
 
         # if no end is specified
         if end == None:
@@ -37,7 +39,8 @@ class Iex(Source):
         for ticker_symbol in ticker_symbols:
             ticker_symbol = ticker_symbol.upper()
 
-            stock_data = download_then_add_data(stock_data, ticker_symbol, start, end, close_only=close_only)
+            # pandas implementation
+            # stock_data = download_then_add_data(stock_data, ticker_symbol, start, end, close_only=close_only)
         return stock_data
 
     @staticmethod
