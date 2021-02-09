@@ -1,8 +1,8 @@
 from abc import ABC
 from datetime import datetime
 
-class Source(ABC):
-    available_functions = ['get_historical_data', 'get_ticker_symbols']
+class Source(self, ABC):
+    self.available_functions = ['get_historical_data', 'get_ticker_symbols', 'get_current_price']
 
     @staticmethod
     def get_historical_data(ticker_symbols, start, end=None, close_only=False):
@@ -37,6 +37,13 @@ class Source(ABC):
     def get_ticker_symbols():
         """
         Returns all ticker symbols, company names, associated exchange(s), etc.
+        """
+        pass
+
+    @staticmethod
+    def get_current_price():
+        """
+        Returns current price
         """
         pass
 

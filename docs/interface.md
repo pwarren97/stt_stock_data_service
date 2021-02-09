@@ -100,6 +100,14 @@ GET current-data/
         }
       }
     }
+
+    OR
+    {
+      "ticker_symbol": 'AAPL',
+      "timestamp": datetime.now(),
+      "price": 100.00,
+      "volume": 1000000
+    }
     - str(datetime().now()) => '2021-01-31'
 
 GET ticker-symbols/
