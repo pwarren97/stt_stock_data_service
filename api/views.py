@@ -3,8 +3,8 @@ from django.views import View
 
 import json
 
-from .download_sources.template.Source import import_source
-source = import_source()
+from .download_sources.template import Source
+source = Source.import_source()
 
 # Create your views here.
 class HistoricalData(View):

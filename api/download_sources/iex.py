@@ -39,8 +39,7 @@ class Iex(Source):
         for ticker_symbol in ticker_symbols:
             ticker_symbol = ticker_symbol.upper()
 
-            # pandas implementation
-            # stock_data = download_then_add_data(stock_data, ticker_symbol, start, end, close_only=close_only)
+            stock_data = download_then_add_data(stock_data, ticker_symbol, start, end, close_only=close_only)
         return stock_data
 
     @staticmethod
@@ -49,21 +48,25 @@ class Iex(Source):
 
         raise NotImplementedError()
 
-# Eliminate IEXCloud specific information for putting data in the database
-def restructure_df(data_frame, ticker_symbol, close_only):
-    data_frame['date'] = data_frame.index
-    data_frame.index.name = None
-    data_frame.index = range(len(data_frame))
-    data_frame['symbol'] = ticker_symbol
+def download_then_add_data(stock_df, ticker_symbol, start, end, close_only):
+    temp = get_historical_data(ticker_symbol, start, end, output_format='json', token=IEX_TOKEN, close_only=close_only)
+    
 
-    if close_only:
-        data_frame = data_frame[["symbol", "date", "close", "volume"]]
-    else:
-        data_frame = data_frame[["symbol", "date", "open", "high", "low", "close", "volume"]]
-    return data_frame
+# Eliminate IEXCloud specific information for putting data in the database
+# def restructure_df(data_frame, ticker_symbol, close_only):
+#     data_frame['date'] = data_frame.index
+#     data_frame.index.name = None
+#     data_frame.index = range(len(data_frame))
+#     data_frame['symbol'] = ticker_symbol
+#
+#     if close_only:
+#         data_frame = data_frame[["symbol", "date", "close", "volume"]]
+#     else:
+#         data_frame = data_frame[["symbol", "date", "open", "high", "low", "close", "volume"]]
+#     return data_frame
 
 # downloads data from IEX then adds it to the relevant pd.DataFrame
-def download_then_add_data(stock_df, ticker_symbol, start, end, close_only):
-    temp = get_historical_data(ticker_symbol, start, end, output_format='pandas', token=IEX_TOKEN, close_only=close_only)
-    temp = restructure_df(temp, ticker_symbol, close_only)
-    return pd.concat([stock_df, temp], ignore_index=True)
+# def download_then_add_data(stock_df, ticker_symbol, start, end, close_only):
+#     temp = get_historical_data(ticker_symbol, start, end, output_format='pandas', token=IEX_TOKEN, close_only=close_only)
+#     temp = restructure_df(temp, ticker_symbol, close_only)
+#     return pd.concat([stock_df, temp], ignore_index=True)
