@@ -14,7 +14,7 @@ class Iex(Source):
     get_ticker_symbols()
     """
 
-    self.available_functions = ['get_historical_data']
+    available_functions = ['get_historical_data']
 
     @staticmethod
     def get_historical_data(ticker_symbols, start, end=None, close_only=False):
@@ -26,7 +26,7 @@ class Iex(Source):
         # Run error checking from Source class
         Source.get_historical_data(ticker_symbols, start, end, close_only)
 
-        stock_data = get_historical_data(ticker_symbols, start, end, close_only=close_only)
+        stock_data = get_historical_data(ticker_symbols, start, end, token=IEX_TOKEN, close_only=close_only)
         return stock_data
 
     @staticmethod
@@ -35,7 +35,7 @@ class Iex(Source):
 
         raise NotImplementedError()
 
-    @staticemethod
+    @staticmethod
     def get_current_price(ticker_symbols):
 
         raise NotImplementedError

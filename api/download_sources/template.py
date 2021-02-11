@@ -1,8 +1,8 @@
 from abc import ABC
 from datetime import datetime
 
-class Source(self, ABC):
-    self.available_functions = ['get_historical_data', 'get_ticker_symbols', 'get_current_price']
+class Source(ABC):
+    available_functions = ['get_historical_data', 'get_ticker_symbols', 'get_current_price']
 
     @staticmethod
     def get_historical_data(ticker_symbols, start, end=None, close_only=False):
@@ -32,6 +32,8 @@ class Source(self, ABC):
 
         if not end == None and not start < end:
             raise ValueError("The start needs to come before the end.")
+
+        return None
 
     @staticmethod
     def get_ticker_symbols():
