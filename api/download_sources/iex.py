@@ -26,7 +26,11 @@ class Iex(Source):
         # Run error checking from Source class
         Source.get_historical_data(ticker_symbols, start, end, close_only)
 
-        stock_data = get_historical_data(ticker_symbols, start, end, token=IEX_TOKEN, close_only=close_only)
+        stock_data = dict()
+        if len(ticker_symbols) == 1:
+            stock_data[ticker_symbols[0].upper()] = get_historical_data(ticker_symbols, start, end, token=IEX_TOKEN, close_only=close_only)
+        else:
+            stock_data = get_historical_data(ticker_symbols, start, end, token=IEX_TOKEN, close_only=close_only)
         return stock_data
 
     @staticmethod

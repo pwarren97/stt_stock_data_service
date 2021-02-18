@@ -10,8 +10,8 @@ end_date = start_date + timedelta(days=2)
 stock1 = 'AAPL'
 stock2 = 'TSLA'
 
-date1 = start_date.date()
-date2 = end_date.date()
+date1 = str(start_date.date())
+date2 = str(end_date.date())
 # _columns = ['symbol', 'date', 'open', 'high', 'low', 'close', 'volume']
 # _columns_close_only = ['symbol', 'date', 'close', 'volume']
 

@@ -57,3 +57,5 @@ class Source(ABC):
             from .iex import Iex as source
         else:
             raise ValueError('Need a proper download source. Set it in stt_stock_data_service.stt_stock_data_service.settings.py.')
+
+        return source

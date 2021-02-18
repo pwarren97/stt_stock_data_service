@@ -38,7 +38,7 @@ class DownloadSourceTestCase(TestCase):
         #
         #
         # # Tests
-        # self.assertEqual(test1, test_data.correct_test1)
+        self.assertEqual(test1, test_data.correct_test1)
         # self.assertEqual(test2, test_data.correct_test2)
         # self.assertEqual(test3, test_data.correct_test3)
         # self.assertEqual(test4, test_data.correct_test4)
