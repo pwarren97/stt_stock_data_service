@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.views import View
+from datetime import datetime
 
 import json
 
@@ -8,15 +9,21 @@ source = Source.import_source()
 
 # Create your views here.
 class HistoricalData(View):
-    def get(self, request):
+    def get(self, request, start_date, ticker_symbols):
         response = HttpResponse()
+
+        start_date = parse_date(start_date)
 
         # Do work
         data = dict()
-        ticker_symbols = request.ticker_symbols.split(',')
-        for ticker_symbol in ticker_symbols:
-            info = source.get_historical_data()
-            data[ticker_symbol] = info
+        # ticker_symbols = request.ticker_symbols.split(',')
+        ticker_symbols = [ ticker_symbols ]
+
+        close_only = True
+        # if end_date:
+        #     data = source.get_historical_data(ticker_symbols, start_date, end_date, close_only=close_only)
+        # else:
+        data = source.get_historical_data(ticker_symbols, start_date, close_only=close_only)
 
         response.content = json.dumps(data)
         return response
@@ -35,3 +42,19 @@ class TickerSymbols(View):
             print(msg)
             response.content = msg
         return response
+
+def parse_date(date_string):
+    is_valid = validate_date(date_string)
+
+    if is_valid:
+        year = int(date_string[:4])
+        month = int(date_string[4:6])
+        day = int(date_string[6:])
+        return datetime(year, month, day)
+
+
+def validate_ticker_symbols(ticker_symbols):
+    pass
+
+def validate_date(date_string):
+    return True

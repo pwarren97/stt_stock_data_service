@@ -38,7 +38,7 @@ class DownloadSourceTestCase(TestCase):
         test8 = source.get_historical_data([ test_data.stock1, test_data.stock2 ], test_data.start_date, test_data.end_date, close_only=True)
         #
         #
-        # # Tests
+        # Tests
         self.assertEqual(test1, test_data.correct_test1)
         self.assertEqual(test2, test_data.correct_test2)
         self.assertEqual(test3, test_data.correct_test3)
