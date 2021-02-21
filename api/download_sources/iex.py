@@ -30,6 +30,7 @@ class Iex(Source):
         if len(ticker_symbols) == 1:
             stock_data[ticker_symbols[0].upper()] = get_historical_data(ticker_symbols, start, end, token=IEX_TOKEN, close_only=close_only)
         else:
+            # the iexfinance function already returns a dict in the appropriate format
             stock_data = get_historical_data(ticker_symbols, start, end, token=IEX_TOKEN, close_only=close_only)
         return stock_data
 

@@ -19,8 +19,8 @@ class Source(ABC):
 
         """
         # Force all the types to be appropriate
-        if not isinstance(ticker_symbols, list):
-            raise TypeError("ticker_symbol must be a list.")
+        if not (isinstance(ticker_symbols, list) or isinstance(ticker_symbols, str)):
+            raise TypeError("ticker_symbols must be a list of strings.")
         elif not isinstance(start, datetime):
             raise TypeError("start must be a datetime.date object.")
         elif not isinstance(end, datetime) and not end == None:
