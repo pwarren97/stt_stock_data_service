@@ -9,10 +9,10 @@ source = Source.import_source()
 
 # Create your views here.
 class HistoricalData(View):
-    def get(self, request, start_date, ticker_symbols):
+    def get(self, request, ticker_symbols, date):
         response = HttpResponse()
 
-        start_date = parse_date(start_date)
+        date = parse_date(date)
 
         # Do work
         data = dict()
@@ -21,10 +21,9 @@ class HistoricalData(View):
 
         close_only = True
         # if end_date:
-        #     data = source.get_historical_data(ticker_symbols, start_date, end_date, close_only=close_only)
+        #     data = source.get_historical_data(ticker_symbols, date, end_date, close_only=close_only)
         # else:
-        data = source.get_historical_data(ticker_symbols, start_date, close_only=close_only)
-
+        data = source.get_historical_data(ticker_symbols, date, close_only=close_only)
         response.content = json.dumps(data)
         return response
 

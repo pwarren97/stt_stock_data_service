@@ -7,7 +7,8 @@ The django admin panel should be passed through by routing through the Web Inter
 ## Internal Access
 The data requested should be passed through via a JSON object.
 
-GET historical-data/{ticker_symbol},{ticker_symbol}
+GET historical-data/ticker_symbols/{ticker_symbols}/date/{date}
+    historical-data/ticker_symbols/{ticker_symbols}/start_date/{start_date}/end_date/{end_date}
   - returns JSON object
   - content returned as explicitly as possible (date as yyyy-mm-dd):
     {
