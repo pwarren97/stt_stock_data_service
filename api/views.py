@@ -8,22 +8,45 @@ from .download_sources.template import Source
 source = Source.import_source()
 
 # Create your views here.
-class HistoricalData(View):
-    def get(self, request, ticker_symbols, date):
+class HistoricalDataOneParameter(View):
+    def get(self, request, ticker_symbols, year, month, day):
+        validate_ticker_symbols(ticker_symbols)
+        validate_date(year, month, day)
+
         response = HttpResponse()
 
-        date = parse_date(date)
+        date = datetime(year, month, day)
 
         # Do work
         data = dict()
         # ticker_symbols = request.ticker_symbols.split(',')
-        ticker_symbols = [ ticker_symbols ]
+        ticker_symbols = parse_ticker_symbols(ticker_symbols)
 
         close_only = True
         # if end_date:
         #     data = source.get_historical_data(ticker_symbols, date, end_date, close_only=close_only)
         # else:
         data = source.get_historical_data(ticker_symbols, date, close_only=close_only)
+        response.content = json.dumps(data)
+        return response
+
+class HistoricalDataTwoParameters(View):
+    def get(self, request, ticker_symbols, start_year, start_month, start_day, end_year, end_month, end_day):
+        validate_ticker_symbols(ticker_symbols)
+        validate_date(start_year, start_month, start_day)
+        validate_date(end_year, end_month, end_day)
+
+        response = HttpResponse()
+
+        start_date = datetime(start_year, start_month, start_day)
+        end_date = datetime(end_year, end_month, end_day)
+
+        data = dict()
+        ticker_symbols = parse_ticker_symbols(ticker_symbols)
+
+        close_only = True
+
+        data = source.get_historical_data(ticker_symbols, start_date, end_date, close_only=close_only)
         response.content = json.dumps(data)
         return response
 
@@ -51,9 +74,11 @@ def parse_date(date_string):
         day = int(date_string[6:])
         return datetime(year, month, day)
 
+def parse_ticker_symbols(ticker_symbols_string):
+    return [ ticker_symbols_string ]
 
 def validate_ticker_symbols(ticker_symbols):
     pass
 
-def validate_date(date_string):
-    return True
+def validate_date(year, month, day):
+    pass

@@ -33,6 +33,10 @@ class Source(ABC):
         if not end == None and not start < end:
             raise ValueError("The start needs to come before the end.")
 
+        now = datetime.now()
+        if (start > now) or (not end == None and end > now):
+            raise ValueError("The start date and end date must not be a date in the future.")
+
         return None
 
     @staticmethod

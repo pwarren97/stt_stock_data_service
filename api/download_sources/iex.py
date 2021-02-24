@@ -24,14 +24,14 @@ class Iex(Source):
         """
         # Run error checking from Source class
         Source.get_historical_data(ticker_symbols, start, end, close_only)
-
+        
         stock_data = dict()
         if len(ticker_symbols) == 1:
             stock_data[ticker_symbols[0].upper()] = get_historical_data(ticker_symbols, start, end, output_format='json', token=IEX_TOKEN, close_only=close_only)
         else:
             # the iexfinance function already returns a dict in the appropriate format
             stock_data = get_historical_data(ticker_symbols, start, end, output_format='json', token=IEX_TOKEN, close_only=close_only)
-        print(stock_data)
+
         return stock_data
 
     @staticmethod

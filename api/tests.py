@@ -76,13 +76,21 @@ class DownloadSourceTestCase(TestCase):
         with self.assertRaises(TypeError):
             temp = source.get_historical_data([test_data.stock1], '2019-01-01', close_only=True)
         #
-        # start_date must not be in the future
-        with self.assertRaises(ValueError):
-            temp = source.get_historical_data([test_data.stock1], datetime.now()+timedelta(days=1))
-        #
         # end date must be a datetime object
         with self.assertRaises(TypeError):
             temp = source.get_historical_data([test_data.stock1], test_data.start_date, '2019-01-01', close_only=True)
+        #
+        # start_date must not be in the future
+        with self.assertRaises(ValueError):
+            temp = source.get_historical_data([test_data.stock1], datetime.now() + timedelta(days=1), close_only=True)
+        #
+        # end_date must not be in the future
+        with self.assertRaises(ValueError):
+            temp = source.get_historical_data([test_data.stock1], test_data.start_date, datetime.now() + timedelta(days=1), close_only=True)
+        #
+        # end_date must be before start_date
+        with self.assertRaises(ValueError):
+            temp = source.get_historical_data([test_data.stock1], test_data.start_date, test_data.start_date - timedelta(days=1), close_only=True)
         #
         # the start date must come before the end date
         with self.assertRaises(ValueError):

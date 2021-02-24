@@ -7,10 +7,9 @@ The django admin panel should be passed through by routing through the Web Inter
 ## Internal Access
 The data requested should be passed through via a JSON object.
 
-GET historical-data/ticker_symbols/{ticker_symbols}/date/{date}
-    historical-data/ticker_symbols/{ticker_symbols}/start_date/{start_date}/end_date/{end_date}
+GET historical-data/ticker-symbols/{ticker_symbols}/date/{year}/{month}/{day}/
+    historical-data/ticker-symbols/{ticker_symbols}/start-date/{start_year}/{start_month}/{start_day}/end-date/{end_year}/{end_month}/{end_day}/
   - returns JSON object
-  - content returned as explicitly as possible (date as yyyy-mm-dd):
     {
       "AAPL": {
         '2021-01-25': {
@@ -90,7 +89,7 @@ GET historical-data/ticker_symbols/{ticker_symbols}/date/{date}
         2   TSLA 2021-01-25  855.00  900.40  838.8201  880.80   41173397
         3   TSLA 2021-01-26  891.38  895.90  871.6000  883.09   23131603
 
-GET current-data/
+GET current-data/ticker-symbols/{ticker_symbols}
   - pulls the current price data in JSON object
   - JSON example should look like:
     {
@@ -112,3 +111,4 @@ GET current-data/
     - str(datetime().now()) => '2021-01-31'
 
 GET ticker-symbols/
+  - pulls all ticker symbols of all stocks on the exchange as well as relevant meta data
