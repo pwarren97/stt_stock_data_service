@@ -10,6 +10,7 @@ source = Source.import_source()
 # Create your views here.
 class HistoricalDataOneParameter(View):
     def get(self, request, ticker_symbols, year, month, day):
+        close_only = True
         validate_ticker_symbols(ticker_symbols)
         validate_date(year, month, day)
 
@@ -22,16 +23,13 @@ class HistoricalDataOneParameter(View):
         # ticker_symbols = request.ticker_symbols.split(',')
         ticker_symbols = parse_ticker_symbols(ticker_symbols)
 
-        close_only = True
-        # if end_date:
-        #     data = source.get_historical_data(ticker_symbols, date, end_date, close_only=close_only)
-        # else:
         data = source.get_historical_data(ticker_symbols, date, close_only=close_only)
         response.content = json.dumps(data)
         return response
 
 class HistoricalDataTwoParameters(View):
     def get(self, request, ticker_symbols, start_year, start_month, start_day, end_year, end_month, end_day):
+        close_only = True
         validate_ticker_symbols(ticker_symbols)
         validate_date(start_year, start_month, start_day)
         validate_date(end_year, end_month, end_day)
@@ -43,8 +41,6 @@ class HistoricalDataTwoParameters(View):
 
         data = dict()
         ticker_symbols = parse_ticker_symbols(ticker_symbols)
-
-        close_only = True
 
         data = source.get_historical_data(ticker_symbols, start_date, end_date, close_only=close_only)
         response.content = json.dumps(data)
@@ -75,7 +71,7 @@ def parse_date(date_string):
         return datetime(year, month, day)
 
 def parse_ticker_symbols(ticker_symbols_string):
-    return [ ticker_symbols_string ]
+    return ticker_symbols_string.split(',')
 
 def validate_ticker_symbols(ticker_symbols):
     pass
