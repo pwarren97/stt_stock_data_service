@@ -30,8 +30,8 @@ class Source(ABC):
             if not isinstance(item, str):
                 raise TypeError("An item in ticker_symbol is not a string.")
 
-        if not end == None and not start < end:
-            raise ValueError("The start needs to come before the end.")
+        if not end == None and not start <= end:
+            raise ValueError("The start needs to come before the end, or be the same if you only want one date.")
 
         now = datetime.now()
         if (start > now) or (not end == None and end > now):

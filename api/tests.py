@@ -50,6 +50,11 @@ class DownloadSourceTestCase(TestCase):
         self.assertEqual(test8, test_data.correct_test8)
 
 
+        # Test to make sure that having the same date for the start date and the end date still pulls data
+        test1_1 = source.get_historical_data([ test_data.stock1 ], test_data.start_date, test_data.start_date)
+        self.assertEqual(test1, test1_1)
+
+
         # THIS GROUPING OF TESTS MAKES SURE THAT close_only=False IS THE SAME THING AS USING THE DEFAULT PARAMETER VALUE
         # tests to make sure that close_only=False is the same thing as leaving
         test1_F = source.get_historical_data([ test_data.stock1 ], test_data.start_date, close_only=False)
