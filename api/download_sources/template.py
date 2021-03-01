@@ -14,9 +14,10 @@ class Source(ABC):
         and the close_only parameter specifies whether or not to return all
         price data for a day or just the close price.
 
-        Data returned should be as follows, a dictionary to be turned into a JSON
-        object. Details listed in docs/interface.md
+        Data returned should be a dictionary to be turned into a JSON object.
+        Details listed in docs/interface.md
 
+        End date parameter is inclusive and can be the same as the start date.
         """
         # Force all the types to be appropriate
         if not (isinstance(ticker_symbols, list) or isinstance(ticker_symbols, str)):

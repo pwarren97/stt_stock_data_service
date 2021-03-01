@@ -7,8 +7,10 @@ The django admin panel should be passed through by routing through the Web Inter
 ## Internal Access
 The data requested should be passed through via a JSON object.
 
-GET historical-data/ticker-symbols/{ticker_symbols}/date/{year}/{month}/{day}/
+GET historical-data/ticker-symbols/{ticker_symbols}/date/{year}/{month}/{day}/close-only={true/false}
     historical-data/ticker-symbols/{ticker_symbols}/start-date/{start_year}/{start_month}/{start_day}/end-date/{end_year}/{end_month}/{end_day}/
+  - all of url should be lowercase
+  - close-only should be a lowercase true and false, but capital letters should be excepted (e.g. TRUE, True, FALSE, etc.)
   - returns JSON object
     {
       "AAPL": {
@@ -91,6 +93,7 @@ GET historical-data/ticker-symbols/{ticker_symbols}/date/{year}/{month}/{day}/
 
 GET current-data/ticker-symbols/{ticker_symbols}
   - pulls the current price data in JSON object
+  - all of url should be lowercase
   - JSON example should look like:
     {
       "AAPL": {
