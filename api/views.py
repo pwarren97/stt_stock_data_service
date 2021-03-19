@@ -62,6 +62,10 @@ class HistoricalDataTwoParameters(View):
         response.content = json.dumps(data)
         return response
 
+class CurrentPrice(View):
+    def get(self, ticker_symbols):
+        pass
+
 class TickerSymbols(View):
     def get(self, request):
         response = HttpResponse()
@@ -74,6 +78,11 @@ class TickerSymbols(View):
             print(msg)
             response.content = msg
         return response
+
+class NewsArticles(View):
+    def get(self, ticker_symbols, start_date, end_date):
+        pass
+
 
 def parse_date(date_string):
     is_valid = validate_date(date_string)

@@ -106,3 +106,6 @@ class DownloadSourceTestCase(TestCase):
 
     def test_get_current_price(self):
         pass
+
+    def test_get_news_article(self):
+        pass

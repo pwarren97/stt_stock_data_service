@@ -55,6 +55,13 @@ class Source(ABC):
         pass
 
     @staticmethod
+    def get_news_article(ticker_symbols, start, end=None):
+        """
+        Returns news articles corresponding to the specific stocks and between the two dates
+        """
+        pass
+
+    @staticmethod
     def import_source():
         from . import settings
 
