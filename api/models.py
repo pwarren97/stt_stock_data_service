@@ -22,7 +22,7 @@ class Stock(models.Model):
 
 class StockName(models.Model):
     date = models.DateTimeField('date_pulled')
-    symbol = models.CharField('symbol', max_length=200)
+    symbol = models.CharField('symbol', max_length=200, unique=True)
     name = models.CharField('name', max_length=200)
     exchange = models.CharField('exchange', max_length=200)
     currency = models.CharField('currency', max_length=200)

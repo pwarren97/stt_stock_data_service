@@ -6,6 +6,13 @@ from api.download_sources.template import Source
 source = Source.import_source()
 
 # Create your tests here.
+class DatabaseConnectionTestCase(TestCase):
+    def setUp(self):
+        pass
+
+    def testConnection(self):
+        pass
+
 class DownloadSourceTestCase(TestCase):
     """
     All Tests assume internet connection is sound, that the token for the

@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.views import View
+from .models import Stock, StockName
 from datetime import datetime, timedelta
 
 import json
@@ -96,6 +97,8 @@ def parse_date(date_string):
 # Pulls data from download source and database
 # Noninclusive of second date
 def pull_historical_data(ticker_symbols, start_date, end_date, close_only):
+    for ticker_symbol in ticker_symbols:
+        stock = Stock.objects.filter(ticker_symbol)
     data = source.get_historical_data(ticker_symbols, start_date, end_date, close_only)
     return data
 

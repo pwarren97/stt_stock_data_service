@@ -127,4 +127,4 @@ STATIC_URL = '/static/'
 
 # Custom for REST API
 # Comes from https://microservicesdocumentation.readthedocs.io/en/latest/contributing/python.html
-DOWNLOAD_SOURCE = 'iex'
+# DOWNLOAD_SOURCE = 'iex'
