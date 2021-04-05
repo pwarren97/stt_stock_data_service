@@ -113,8 +113,9 @@ GET current-data/ticker-symbols/{ticker_symbols}
     }
     - str(datetime().now()) => '2021-01-31'
 
-GET ticker-symbols/
+POST ticker-symbols/
   - pulls all ticker symbols of all stocks on the exchange as well as relevant meta data
+  - used to figure out what data can be pulled from the current download source
 
 GET news-articles/ticker-symbols/{ticker_symbols}/start-date/{start_date}/end-date/{end_date}/
   - pulls all news articles corresponding to the specific ticker symbols and specific date

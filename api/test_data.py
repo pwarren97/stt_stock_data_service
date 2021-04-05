@@ -18,7 +18,7 @@ date2 = str(end_date.date())
 # _columns = ['symbol', 'date', 'open', 'high', 'low', 'close', 'volume']
 # _columns_close_only = ['symbol', 'date', 'close', 'volume']
 
-_stock_data = {
+stock_data = {
     stock1: {
         date1: {
             "open": 143.07,
@@ -58,11 +58,11 @@ _stock_data = {
 correct_test1 = {
     stock1: {
         date1: {
-            "open":   _stock_data[ stock1 ][ date1 ][ 'open' ],
-            "high":   _stock_data[ stock1 ][ date1 ][ 'high' ],
-            "low":    _stock_data[ stock1 ][ date1 ][ 'low' ],
-            "close":  _stock_data[ stock1 ][ date1 ][ 'close' ],
-            "volume": _stock_data[ stock1 ][ date1 ][ 'volume' ]
+            "open":   stock_data[ stock1 ][ date1 ][ 'open' ],
+            "high":   stock_data[ stock1 ][ date1 ][ 'high' ],
+            "low":    stock_data[ stock1 ][ date1 ][ 'low' ],
+            "close":  stock_data[ stock1 ][ date1 ][ 'close' ],
+            "volume": stock_data[ stock1 ][ date1 ][ 'volume' ]
         }
     }
 }
@@ -70,8 +70,8 @@ correct_test1 = {
 correct_test2 = {
     stock1: {
         date1: {
-            "close":  _stock_data[ stock1 ][ date1 ][ 'close' ],
-            "volume": _stock_data[ stock1 ][ date1 ][ 'volume' ]
+            "close":  stock_data[ stock1 ][ date1 ][ 'close' ],
+            "volume": stock_data[ stock1 ][ date1 ][ 'volume' ]
         }
     }
 }
@@ -81,19 +81,19 @@ correct_test2 = {
 correct_test3 = {
     stock1: {
         date1: {
-            "open":   _stock_data[ stock1 ][ date1 ][ 'open' ],
-            "high":   _stock_data[ stock1 ][ date1 ][ 'high' ],
-            "low":    _stock_data[ stock1 ][ date1 ][ 'low' ],
-            "close":  _stock_data[ stock1 ][ date1 ][ 'close' ],
-            "volume": _stock_data[ stock1 ][ date1 ][ 'volume' ]
+            "open":   stock_data[ stock1 ][ date1 ][ 'open' ],
+            "high":   stock_data[ stock1 ][ date1 ][ 'high' ],
+            "low":    stock_data[ stock1 ][ date1 ][ 'low' ],
+            "close":  stock_data[ stock1 ][ date1 ][ 'close' ],
+            "volume": stock_data[ stock1 ][ date1 ][ 'volume' ]
         },
 
         date2: {
-            "open":   _stock_data[ stock1 ][ date2 ][ 'open' ],
-            "high":   _stock_data[ stock1 ][ date2 ][ 'high' ],
-            "low":    _stock_data[ stock1 ][ date2 ][ 'low' ],
-            "close":  _stock_data[ stock1 ][ date2 ][ 'close' ],
-            "volume": _stock_data[ stock1 ][ date2 ][ 'volume' ]
+            "open":   stock_data[ stock1 ][ date2 ][ 'open' ],
+            "high":   stock_data[ stock1 ][ date2 ][ 'high' ],
+            "low":    stock_data[ stock1 ][ date2 ][ 'low' ],
+            "close":  stock_data[ stock1 ][ date2 ][ 'close' ],
+            "volume": stock_data[ stock1 ][ date2 ][ 'volume' ]
         }
     }
 }
@@ -102,13 +102,13 @@ correct_test3 = {
 correct_test4 = {
     stock1: {
         date1: {
-            "close":  _stock_data[ stock1 ][ date1 ][ 'close' ],
-            "volume": _stock_data[ stock1 ][ date1 ][ 'volume' ]
+            "close":  stock_data[ stock1 ][ date1 ][ 'close' ],
+            "volume": stock_data[ stock1 ][ date1 ][ 'volume' ]
         },
 
         date2: {
-            "close":  _stock_data[ stock1 ][ date2 ][ 'close' ],
-            "volume": _stock_data[ stock1 ][ date2 ][ 'volume' ]
+            "close":  stock_data[ stock1 ][ date2 ][ 'close' ],
+            "volume": stock_data[ stock1 ][ date2 ][ 'volume' ]
         }
     }
 }
@@ -119,20 +119,20 @@ correct_test4 = {
 correct_test5 = {
     stock1: {
         date1: {
-            "open":   _stock_data[ stock1 ][ date1 ][ 'open' ],
-            "high":   _stock_data[ stock1 ][ date1 ][ 'high' ],
-            "low":    _stock_data[ stock1 ][ date1 ][ 'low' ],
-            "close":  _stock_data[ stock1 ][ date1 ][ 'close' ],
-            "volume": _stock_data[ stock1 ][ date1 ][ 'volume' ]
+            "open":   stock_data[ stock1 ][ date1 ][ 'open' ],
+            "high":   stock_data[ stock1 ][ date1 ][ 'high' ],
+            "low":    stock_data[ stock1 ][ date1 ][ 'low' ],
+            "close":  stock_data[ stock1 ][ date1 ][ 'close' ],
+            "volume": stock_data[ stock1 ][ date1 ][ 'volume' ]
         }
     },
     stock2: {
         date1: {
-            "open":   _stock_data[ stock2 ][ date1 ][ 'open' ],
-            "high":   _stock_data[ stock2 ][ date1 ][ 'high' ],
-            "low":    _stock_data[ stock2 ][ date1 ][ 'low' ],
-            "close":  _stock_data[ stock2 ][ date1 ][ 'close' ],
-            "volume": _stock_data[ stock2 ][ date1 ][ 'volume' ]
+            "open":   stock_data[ stock2 ][ date1 ][ 'open' ],
+            "high":   stock_data[ stock2 ][ date1 ][ 'high' ],
+            "low":    stock_data[ stock2 ][ date1 ][ 'low' ],
+            "close":  stock_data[ stock2 ][ date1 ][ 'close' ],
+            "volume": stock_data[ stock2 ][ date1 ][ 'volume' ]
         }
     }
 }
@@ -140,14 +140,14 @@ correct_test5 = {
 correct_test6 = {
     stock1: {
         date1: {
-            "close":  _stock_data[ stock1 ][ date1 ][ 'close' ],
-            "volume": _stock_data[ stock1 ][ date1 ][ 'volume' ]
+            "close":  stock_data[ stock1 ][ date1 ][ 'close' ],
+            "volume": stock_data[ stock1 ][ date1 ][ 'volume' ]
         }
     },
     stock2: {
         date1: {
-            "close":  _stock_data[ stock2 ][ date1 ][ 'close' ],
-            "volume": _stock_data[ stock2 ][ date1 ][ 'volume' ]
+            "close":  stock_data[ stock2 ][ date1 ][ 'close' ],
+            "volume": stock_data[ stock2 ][ date1 ][ 'volume' ]
         }
     }
 }
@@ -158,34 +158,34 @@ correct_test6 = {
 correct_test7 = {
     stock1: {
         date1: {
-            "open":   _stock_data[ stock1 ][ date1 ][ 'open' ],
-            "high":   _stock_data[ stock1 ][ date1 ][ 'high' ],
-            "low":    _stock_data[ stock1 ][ date1 ][ 'low' ],
-            "close":  _stock_data[ stock1 ][ date1 ][ 'close' ],
-            "volume": _stock_data[ stock1 ][ date1 ][ 'volume' ]
+            "open":   stock_data[ stock1 ][ date1 ][ 'open' ],
+            "high":   stock_data[ stock1 ][ date1 ][ 'high' ],
+            "low":    stock_data[ stock1 ][ date1 ][ 'low' ],
+            "close":  stock_data[ stock1 ][ date1 ][ 'close' ],
+            "volume": stock_data[ stock1 ][ date1 ][ 'volume' ]
         },
         date2: {
-            "open":   _stock_data[ stock1 ][ date2 ][ 'open' ],
-            "high":   _stock_data[ stock1 ][ date2 ][ 'high' ],
-            "low":    _stock_data[ stock1 ][ date2 ][ 'low' ],
-            "close":  _stock_data[ stock1 ][ date2 ][ 'close' ],
-            "volume": _stock_data[ stock1 ][ date2 ][ 'volume' ]
+            "open":   stock_data[ stock1 ][ date2 ][ 'open' ],
+            "high":   stock_data[ stock1 ][ date2 ][ 'high' ],
+            "low":    stock_data[ stock1 ][ date2 ][ 'low' ],
+            "close":  stock_data[ stock1 ][ date2 ][ 'close' ],
+            "volume": stock_data[ stock1 ][ date2 ][ 'volume' ]
         }
     },
     stock2: {
         date1: {
-            "open":   _stock_data[ stock2 ][ date1 ][ 'open' ],
-            "high":   _stock_data[ stock2 ][ date1 ][ 'high' ],
-            "low":    _stock_data[ stock2 ][ date1 ][ 'low' ],
-            "close":  _stock_data[ stock2 ][ date1 ][ 'close' ],
-            "volume": _stock_data[ stock2 ][ date1 ][ 'volume' ]
+            "open":   stock_data[ stock2 ][ date1 ][ 'open' ],
+            "high":   stock_data[ stock2 ][ date1 ][ 'high' ],
+            "low":    stock_data[ stock2 ][ date1 ][ 'low' ],
+            "close":  stock_data[ stock2 ][ date1 ][ 'close' ],
+            "volume": stock_data[ stock2 ][ date1 ][ 'volume' ]
         },
         date2: {
-            "open":   _stock_data[ stock2 ][ date2 ][ 'open' ],
-            "high":   _stock_data[ stock2 ][ date2 ][ 'high' ],
-            "low":    _stock_data[ stock2 ][ date2 ][ 'low' ],
-            "close":  _stock_data[ stock2 ][ date2 ][ 'close' ],
-            "volume": _stock_data[ stock2 ][ date2 ][ 'volume' ]
+            "open":   stock_data[ stock2 ][ date2 ][ 'open' ],
+            "high":   stock_data[ stock2 ][ date2 ][ 'high' ],
+            "low":    stock_data[ stock2 ][ date2 ][ 'low' ],
+            "close":  stock_data[ stock2 ][ date2 ][ 'close' ],
+            "volume": stock_data[ stock2 ][ date2 ][ 'volume' ]
         }
     }
 }
@@ -194,22 +194,22 @@ correct_test7 = {
 correct_test8 = {
     stock1: {
         date1: {
-            "close":  _stock_data[ stock1 ][ date1 ][ 'close' ],
-            "volume": _stock_data[ stock1 ][ date1 ][ 'volume' ]
+            "close":  stock_data[ stock1 ][ date1 ][ 'close' ],
+            "volume": stock_data[ stock1 ][ date1 ][ 'volume' ]
         },
         date2: {
-            "close":  _stock_data[ stock1 ][ date2 ][ 'close' ],
-            "volume": _stock_data[ stock1 ][ date2 ][ 'volume' ]
+            "close":  stock_data[ stock1 ][ date2 ][ 'close' ],
+            "volume": stock_data[ stock1 ][ date2 ][ 'volume' ]
         }
     },
     stock2: {
         date1: {
-            "close":  _stock_data[ stock2 ][ date1 ][ 'close' ],
-            "volume": _stock_data[ stock2 ][ date1 ][ 'volume' ]
+            "close":  stock_data[ stock2 ][ date1 ][ 'close' ],
+            "volume": stock_data[ stock2 ][ date1 ][ 'volume' ]
         },
         date2: {
-            "close":  _stock_data[ stock2 ][ date2 ][ 'close' ],
-            "volume": _stock_data[ stock2 ][ date2 ][ 'volume' ]
+            "close":  stock_data[ stock2 ][ date2 ][ 'close' ],
+            "volume": stock_data[ stock2 ][ date2 ][ 'volume' ]
         }
     }
 }

@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Stock(models.Model):
     stock_name = models.ForeignKey('StockName',
-                                    models.SET_NULL,
+                                    on_delete=models.SET_NULL,
                                     null=True)
     date = models.DateTimeField('date')
     symbol = models.CharField('symbol', max_length=10)
