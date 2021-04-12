@@ -6,6 +6,7 @@ from api.models import Stock, StockName
 
 source = Source.import_source()
 
+stock_data_cache = []
 
 class DownloadSourceTestCase(TestCase):
     """
@@ -39,6 +40,9 @@ class DownloadSourceTestCase(TestCase):
         test7 = source.get_historical_data([ test_data.stock1, test_data.stock2 ], test_data.start_date, test_data.end_date)
         test8 = source.get_historical_data([ test_data.stock1, test_data.stock2 ], test_data.start_date, test_data.end_date, close_only=True)
         #
+        # Allow stock to be passed through as a string
+        test1_s = source.get_historical_data(test_data.stock1, test_data.start_date)
+        #
         #
         # Tests
         self.assertEqual(test1, test_data.correct_test1)
@@ -50,6 +54,9 @@ class DownloadSourceTestCase(TestCase):
         self.assertEqual(test6, test_data.correct_test6)
         self.assertEqual(test7, test_data.correct_test7)
         self.assertEqual(test8, test_data.correct_test8)
+
+        # Test to make sure the same result got passed through with a string as a list containing a single string
+        self.assertEqual(test1_s, test_data.correct_test1)
 
 
         # Test to make sure that having the same date for the start date and the end date still pulls data

@@ -13,7 +13,7 @@ class Iex(Source):
     get_ticker_symbols()
     """
 
-    available_functions = ['get_historical_data']
+    # available_functions = ['get_historical_data']
 
     @staticmethod
     def get_historical_data(ticker_symbols, start, end=None, close_only=False):
@@ -24,13 +24,18 @@ class Iex(Source):
         """
         # Run error checking from Source class
         Source.get_historical_data(ticker_symbols, start, end, close_only)
-        
+
         stock_data = dict()
         if len(ticker_symbols) == 1:
             stock_data[ticker_symbols[0].upper()] = get_historical_data(ticker_symbols, start, end, output_format='json', token=IEX_TOKEN, close_only=close_only)
         else:
             # the iexfinance function already returns a dict in the appropriate format
+            # if a list is passed through
             stock_data = get_historical_data(ticker_symbols, start, end, output_format='json', token=IEX_TOKEN, close_only=close_only)
+
+            # Make the format correct if a string
+            if isinstance(ticker_symbols, str):
+                stock_data = {ticker_symbols: stock_data}
 
         return stock_data
 

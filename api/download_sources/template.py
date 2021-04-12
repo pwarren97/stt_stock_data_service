@@ -2,7 +2,7 @@ from abc import ABC
 from datetime import datetime
 
 class Source(ABC):
-    available_functions = ['get_historical_data', 'get_ticker_symbols', 'get_current_price']
+    # available_functions = ['get_historical_data', 'get_ticker_symbols', 'get_current_price']
 
     @staticmethod
     def get_historical_data(ticker_symbols, start, end=None, close_only=False):
