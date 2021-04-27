@@ -5,3 +5,5 @@ This program involves a REST API interface for accessing stock data. It is inten
 to rely on a separate service for getting the indicators, since it can be done via
 a GPU or high end CPU, and that might necessitate a different language to be done
 quickly.
+
+Consult the docs/interface.md for how to interface with it.

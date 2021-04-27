@@ -1,16 +1,10 @@
 from django.http import HttpResponse
 from django.views import View
 from datetime import datetime, timedelta
-from api import helpers
+from api.utils import helpers
+from api.utils.input_validation import UrlInputValids
 
 import json
-
-# Error messages to be passed through through to the response
-invalid_ticker_symbols_msg = "The ticker-symbol variable must be in a comma separated list."
-_invalid_date_msg = " must be in the form year/month/day."
-invalid_start_date_msg = "The start date" + _invalid_date_msg
-invalid_end_date_msg = "The end date" + _invalid_date_msg
-invalid_close_only_msg = "The close-only variable was not set correctly. It must be true or false."
 
 # Create your views here.
 class HistoricalDataOneParameter(View):
@@ -19,7 +13,7 @@ class HistoricalDataOneParameter(View):
         ticker_symbols = helpers.parse_ticker_symbols(ticker_symbols)
         close_only = close_only.lower()
 
-        valid, err_msg = helpers.validate_hist_data_one_param(ticker_symbols, year, month, day, close_only)
+        valid, err_msg = UrlInputValids.validate_hist_data_one_param(ticker_symbols, year, month, day, close_only)
         if not valid:
             response.content = json.dumps(err_msg)
             return response
@@ -42,7 +36,7 @@ class HistoricalDataTwoParameters(View):
         ticker_symbols = helpers.parse_ticker_symbols(ticker_symbols)
         close_only = close_only.lower()
 
-        valid, err_msg = helpers.validate_hist_data_two_params(ticker_symbols, start_year, start_month, start_day, end_year, end_month, end_day, close_only)
+        valid, err_msg = UrlInputValids.validate_hist_data_two_params(ticker_symbols, start_year, start_month, start_day, end_year, end_month, end_day, close_only)
         if not valid:
             response.content = json.dumps(err_msg)
             return response

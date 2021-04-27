@@ -213,3 +213,15 @@ correct_test8 = {
         }
     }
 }
+
+correct_tests = [
+        correct_test1,
+        correct_test2,
+        correct_test3,
+        correct_test4,
+
+        correct_test5,
+        correct_test6,
+        correct_test7,
+        correct_test8,
+    ]
