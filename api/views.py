@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.views import View
 from datetime import datetime, timedelta
-from api.utils import helpers
-from api.utils.input_validation import UrlInputValids
+from api.lib.utils import helpers
+from api.lib.utils.input_validation import UrlInputValids
 
 import json
 

@@ -1,9 +1,9 @@
 from django.test import TestCase
 from datetime import datetime, timedelta
 from . import test_data
-from api.download_sources.template import Source
 from api.models import Stock, StockName
-from api.utils import helpers
+from api.lib.download_sources.template import Source
+from api.lib.utils import helpers
 
 source = Source.import_source()
 
