@@ -5,18 +5,15 @@ from api.models import Stock, StockName
 from api.lib.download_sources.template import Source
 from api.lib.utils import helpers
 
-source = Source.import_source()
+from unittest.mock import patch
 
-stock_data_cache = []
+source = Source.import_source()
 
 class DownloadSourceTestCase(TestCase):
     """
     All Tests assume internet connection is sound, that the token for the
     download source is valid, and that
     """
-
-    def setUp(self):
-        pass
 
     def test_get_historical_data(self):
 
@@ -105,14 +102,93 @@ class HelpersTestCase(TestCase):
     """
     All tests are related to the helper functions in helpers.py
     """
+    @patch('api.lib.utils.helpers.Stock')
+    def test_pull_historical_data_download_source_only(self, mock_stock):
+        # Set up
+        stock1 = test_data.stock1
+        stock2 = test_data.stock2
+        start_date = test_data.start_date
+        end_date = test_data.end_date
 
-    def setUp(self):
-        pass
+        mock_stock.objects.filter.return_value = []
 
-    def test_pull_historical_data(self):
-        pass
-        # test1 = source.get_historical_data([ test_data.stock1 ], test_data.start_date)
-        # test1_ = source.get_historical_data([ test_data.stock1 ], test_data.start_date, close_only=False)
-        # test2 = source.get_historical_data([ test_data.stock1 ], test_data.start_date, close_only=True)
-        # test4 = source.get_historical_data([ test_data.stock1 ], test_data.start_date, test_data.end_date, close_only=True)
-        # test4_s = source.get_historical_data(test_data.stock1, test_data.start_date, test_data.end_date, close_only=False)
+        # Requests
+        request1 = helpers.pull_historical_data([stock1], start_date, close_only=True)
+        request2 = helpers.pull_historical_data([stock1], start_date, end_date, close_only=True)
+
+        request3 = helpers.pull_historical_data([stock1], start_date, close_only=False)
+        request4 = helpers.pull_historical_data([stock1], start_date, end_date, close_only=False)
+
+        request5 = helpers.pull_historical_data([stock1, stock2], start_date, close_only=True)
+        request6 = helpers.pull_historical_data([stock1, stock2], start_date, end_date, close_only=True)
+
+        request7 = helpers.pull_historical_data([stock1, stock2], start_date, close_only=False)
+        request8 = helpers.pull_historical_data([stock1, stock2], start_date, end_date, close_only=False)
+
+        request_close_only_defaults_false = helpers.pull_historical_data([stock1], start_date)
+
+
+        # Tests
+        self.assertEqual(request1, test_data.correct_test2)
+        self.assertEqual(request2, test_data.correct_test4)
+
+        self.assertEqual(request3, test_data.correct_test1)
+        self.assertEqual(request4, test_data.correct_test3)
+
+        self.assertEqual(request5, test_data.correct_test6)
+        self.assertEqual(request6, test_data.correct_test8)
+
+        self.assertEqual(request7, test_data.correct_test5)
+        self.assertEqual(request8, test_data.correct_test7)
+
+        # tests whether close_only's default value is false
+        self.assertEqual(request3, request_close_only_defaults_false)
+
+
+    @patch('api.lib.utils.helpers.Stock')
+    def test_pull_historical_data_db_only(self, mock_stock):
+        # Set up
+        stock1 = test_data.stock1
+        stock2 = test_data.stock2
+        start_date = test_data.start_date
+        end_date = test_data.end_date
+
+        ### TESTS close_only=True
+        mock_stock.objects.filter.return_value = [
+            Stock(symbol=stock1,
+                date=date1,
+                close=test_data.stock_data[stock1][start_date].close,
+                volume=test_data.stock_data[stock1][start_date].volume),
+            Stock(symbol=stock1,
+                date=date2,
+                close=test_data.stock_data[stock1][end_date].close,
+                volume=test_data.stock_data[stock1][end_date].volume)
+        ]
+
+        # Requests
+        request1 = helpers.pull_historical_data([stock1], start_date, end_date)
+
+        ### TESTS close_only=False
+        mock_stock.objects.filter.return_value = [
+            Stock(symbol=stock1,
+                date=date1,
+                open=test_data.stock_data[stock1][start_date].open,
+                high=test_data.stock_data[stock1][start_date].high,
+                low=test_data.stock_data[stock1][start_date].low,
+                close=test_data.stock_data[stock1][start_date].close,
+                volume=test_data.stock_data[stock1][start_date].volume),
+            Stock(symbol=stock1,
+                date=date2,
+                open=test_data.stock_data[stock1][end_date].open,
+                high=test_data.stock_data[stock1][end_date].high,
+                low=test_data.stock_data[stock1][end_date].low,
+                close=test_data.stock_data[stock1][end_date].close,
+                volume=test_data.stock_data[stock1][end_date].volume)
+        ]
+
+        # Requests
+        request1 = helpers.pull_historical_data([stock1], start_date, close_only=True)
+        request2 = helpers.pull_historical_data([stock1], start_date, end_date, close_only=True)
+
+        request3 = helpers.pull_historical_data([stock1], start_date, close_only=False)
+        request4 = helpers.pull_historical_data([stock1], start_date, end_date, close_only=False)

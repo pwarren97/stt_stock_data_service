@@ -14,6 +14,7 @@ def pull_historical_data(ticker_symbols, start_date, end_date=None, close_only=F
     if end_date == None:
         end_date = start_date
 
+    return_data = dict()
     for ticker_symbol in ticker_symbols:
         # Pull db data
         if start_date != end_date:
@@ -29,15 +30,31 @@ def pull_historical_data(ticker_symbols, start_date, end_date=None, close_only=F
         db_data_idx = 0
 
         # Find the missing dates in the db_data
-        while temp_date != end_date:
+        while db_data != [] and temp_date != end_date:
             if temp_date != db_data[db_data_idx]:
                 missing_dates.append(temp_date)
             else:
+                if close_only:
+                    return_data[ticker_symbol][ str(temp_date.date()) ] = {
+                        'close': db_data[db_data_idx].close,
+                        'volume': db_data[db_data_idx].volume
+                    }
+                else:
+                    if db_data[db_data_idx].open:
+                        return_data[ticker_symbol][ str(temp_date.date()) ] = {
+                            'open': db_data[db_data_idx].open,
+                            'high': db_data[db_data_idx].high,
+                            'low': db_data[db_data_idx].low,
+                            'close': db_data[db_data_idx].close,
+                            'volume': db_data[db_data_idx].volume
+                        }
+                    else:
+                        missing_dates.append(temp_date)
                 db_data_idx = db_data_idx + 1
-            temp_date = temp_date + timedelta(days=1)
-
+            temp_date = temp_date + timedelta(days=1
 
         download_data = source.get_historical_data(ticker_symbol, start_date, end_date, close_only)
+
 
     return download_data
 
