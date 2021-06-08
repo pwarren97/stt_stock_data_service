@@ -102,6 +102,10 @@ class HelpersTestCase(TestCase):
     """
     All tests are related to the helper functions in helpers.py
     """
+
+    def test_pull_historical_data_parameters(self):
+        pass
+        
     @patch('api.lib.utils.helpers.Stock')
     def test_pull_historical_data_download_source_only(self, mock_stock):
         # Set up

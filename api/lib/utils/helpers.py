@@ -8,19 +8,18 @@ source = Source.import_source()
 # Pulls data from the database, then download source
 # Inclusive of second date
 def pull_historical_data(ticker_symbols, start_date, end_date=None, close_only=False):
+    return_data = dict()
     # Add a final stock data variable
-    results = dict()
 
     if end_date == None:
         end_date = start_date
 
-    return_data = dict()
     for ticker_symbol in ticker_symbols:
         # Pull db data
-        if start_date != end_date:
-            db_data = Stock.objects.filter(symbol=ticker_symbol, date__range=(start_date, end_date))
-        elif start_date <= end_date:
+        if start_date == end_date:
             db_data = Stock.objects.filter(symbol=ticker_symbol, date=start_date)
+        elif start_date <= end_date:
+            db_data = Stock.objects.filter(symbol=ticker_symbol, date__range=(start_date, end_date))
         else:
             raise ValueError("The start date must come before end date.")
 
@@ -51,10 +50,10 @@ def pull_historical_data(ticker_symbols, start_date, end_date=None, close_only=F
                     else:
                         missing_dates.append(temp_date)
                 db_data_idx = db_data_idx + 1
-            temp_date = temp_date + timedelta(days=1
+            temp_date = temp_date + timedelta(days=1)
 
         download_data = source.get_historical_data(ticker_symbol, start_date, end_date, close_only)
-
+        # save download data to database
 
     return download_data
 
