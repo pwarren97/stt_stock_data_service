@@ -105,7 +105,7 @@ class HelpersTestCase(TestCase):
 
     def test_pull_historical_data_parameters(self):
         pass
-        
+
     @patch('api.lib.utils.helpers.Stock')
     def test_pull_historical_data_download_source_only(self, mock_stock):
         # Set up
@@ -170,7 +170,8 @@ class HelpersTestCase(TestCase):
         ]
 
         # Requests
-        request1 = helpers.pull_historical_data([stock1], start_date, end_date)
+        request1 = helpers.pull_historical_data([stock1], start_date, close_only=True)
+        request2 = helpers.pull_historical_data([stock1], start_date, end_date, close_only=True)
 
         ### TESTS close_only=False
         mock_stock.objects.filter.return_value = [
@@ -191,8 +192,5 @@ class HelpersTestCase(TestCase):
         ]
 
         # Requests
-        request1 = helpers.pull_historical_data([stock1], start_date, close_only=True)
-        request2 = helpers.pull_historical_data([stock1], start_date, end_date, close_only=True)
-
         request3 = helpers.pull_historical_data([stock1], start_date, close_only=False)
         request4 = helpers.pull_historical_data([stock1], start_date, end_date, close_only=False)
